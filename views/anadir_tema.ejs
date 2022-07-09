@@ -1,0 +1,58 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title ><%= title %> </title>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <header>
+            <div class = "nombre"><h1>Anadir tema</h1></div>
+        </header>
+        <form method="post">
+            <div class ="input_info"  >
+                <div class="input_tema">
+                    <label>Tema
+                        <input type="text" name="tema">
+                    </label>
+                </div>
+                <br>
+                <div class="input_palabra">
+                <br>
+                    <label>Palabra
+                        <input type="text" name="palabro">
+                    </label>
+                    <label>Traducor
+                        <input type="text" name="traducor">
+                    </label>
+                </div>
+            
+            <br>
+        </div>
+            <div class="for_button_anadir_tema">
+                <button  type="button" class="anadir_tema" onclick = "anadir_areas_de_texto()">Más</button>
+                <!-- <input onclick = "anadir_areas_de_texto()" type="submit" class="anadir_tema" value="Else"> -->
+                <input type="submit" class="anadir_tema" value="Anadir tema">
+            </div>
+        
+
+        </form>
+        
+        
+        <script>
+            function anadir_areas_de_texto(){
+                document.querySelector('.input_info').insertAdjacentHTML('beforeend' ,'<div class="input_palabra">\
+                                                            <br>\
+                                                            <label>Palabra\
+                                                                <input type="text" name="palabro">\
+                                                                <label>Traducor\
+                                                            <input type="text" name="traducor">\
+                                                        </label>\
+                                                    </div>');
+                                                                                                        
+        }
+        </script>
+    </body>
+</html>

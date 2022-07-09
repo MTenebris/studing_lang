@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title ><%= title %> </title>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <header>
+            <div class = "nombre"><h1> <%= title %></h1></div>
+            <div class = "nombre"><h1>Methods</h1></div>
+            <div class="box1"> <a href="/tema/<%= title %>/cards">Cards</a></div>
+            <div class="box1"> <a href="/tema/<%= title %>/metodo1">Metodo1</a></div>
+            <div class="box1"> <a href="/tema/<%= title %>/metodo2">Metodo2</a></div>
+            <br>
+            <div class = "nombre"><h1>Palabras</h1></div>
+        </header>
+        <content>
+            <div nav>
+                <button class = "buttonp2" > <a href="/tema/<%= title %>/anadir_palabra"> añadir palabra</a></button>
+                <button class = "buttonp2" > <a href="/"> volver</a></button>
+
+            </div>
+            
+            <table>
+                <% if (result.length) { %>
+                    <% result.forEach(( palabra ) => { %>
+                <tr>
+                        <td class="palabra" ><%= palabra["palabro"] %></td>
+                        <td class="palabra"><%= palabra["traducor"]%></td>
+                        <td><a href = '/edit/<%= palabra["_id"] %>'><img class ="icon" src="/src/edit.png" alt="edit"></a></td>
+                        <td><img class ="icon" src="/src/delete.png" alt="delete" data-id="<%= palabra["_id"] %>"></td>
+                </tr>
+
+                    <% }) %>
+                    <% } %>  
+            </table>
+        </content>
+        <script>
+            document.addEventListener('click', (e) => {
+      const id = e.target?.dataset?.id || null;
+      if (id) {
+        fetch(`/tema/${id}`, {
+          method: 'DELETE',
+        }).then(() => {
+          window.location.reload();
+        });
+      }
+    });
+        </script>
+    </body>
+</html>

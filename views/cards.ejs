@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title ><%= title %> </title>
+    <link rel="stylesheet" href="/animation.css" />
+  </head>
+  <body>
+    <header>
+      <div class = "nombre"><h1><%= title  %> </h1></div>
+      <div class = "nombre"><h1>Cards</h1></div>
+  </header>
+    <content>
+    <div class="w3-content w3-display-container">
+      <% if (result.length) { %>
+        <% result.forEach(( palabra ) => { %>
+          <div class="scene">
+            <div class="card">
+               <div class="card__face card__face--front"> <%= palabra.palabro %></div>
+                <div class="card__face card__face--back"><%= palabra.traducor %></div>
+            </div>
+          </div>
+
+        <% }) %>
+        <% } %>  
+      <div class = buttons>
+      <button class="left" onclick="plusDivs(-1)">&#10094;</button>
+      <button class="right" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+    </div>
+    <br>
+    <button class = "buttonp2" > <a href="/tema/<%= title %>">Volver</a></button>
+  </content>
+    <script>
+      var cards = document.querySelectorAll('.card');
+      function rotatecard(slideIndex){
+        var c = cards[slideIndex];
+        c.addEventListener( 'click', function() {
+        c.classList.toggle('is-flipped');
+      });
+      }
+        
+      var slideIndex = 0;
+      showDivs(slideIndex);
+      rotatecard(slideIndex)
+
+      
+
+      function plusDivs(n) {
+        rotatecard(slideIndex)
+        showDivs(slideIndex += n);
+        rotatecard(slideIndex)
+        
+        // var card =cards[slideIndex];
+        // console.log(card.textContent)
+        // card.addEventListener( 'click', function() {
+        // card.classList.toggle('is-flipped');
+        // });
+      }
+
+      function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("scene");
+        if (n < 1) { 
+          document.querySelector(".left").style.visibility="hidden";
+         }
+        else if (n > cards.length -2 ) { document.querySelector(".right").style.visibility="hidden";}
+        else{
+          document.querySelector(".left").style.visibility='visible '
+          document.querySelector(".right").style.visibility="visible";
+        }
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        x[slideIndex].style.display = "block";
+      }
+   </script>
+  </body>
+</html>

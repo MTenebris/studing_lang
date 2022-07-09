@@ -1,0 +1,50 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title ><%= title %> </title>
+        <link rel="stylesheet" href="/animation.css" />
+    </head>
+    <body>
+        <header>
+            <div class = "nombre"><h1><%= title  %> </h1></div>
+            <div class = "nombre"><h1>Motodo1</h1></div>
+            <div class = "nombre"><h1>Resultado: <%= result[0].resultado  %> </h1></div>
+        </header>
+        <content>
+            <div class="responder">
+                <table>
+                    <tr>
+                        <th>Palabra</th>
+                        <th>Tu</th>
+                        <th>Correcto</th>
+                    </tr>
+                    <% if (result[0].tareas.length) { %>
+                     <% result[0].tareas.forEach(( palabra ) => { %>
+                        <% if(palabra.responder != palabra.correcto ) %>
+                    <tr>
+                        <td class="palabra" > <%= palabra.pregunta  %></td>
+                        <td class="palabra">  <%= palabra.respondo  %> </td>
+                        <td class="palabra"><div class="correcto">  <%= palabra.correcto  %></div></td>
+                    </tr>
+                    <% }) %>
+                    <% } %>                
+                </table>
+            </div>
+            <br>
+            <div class="buttons">
+                <button class="buttonp"><a href="/tema/<%= title%>/metodo1">Intentar otra vez</a></button>
+                <button class="buttonp"><a href="/tema/<%= title %>">Volver a página de inicio</a></button>
+            </div>
+        </content>
+        <script>
+            function sound(word){
+            const utterance = new SpeechSynthesisUtterance(word)
+            utterance.lang = "es-ES"
+            speechSynthesis.speak(utterance)
+            }
+        </script>
+    </body>
+</html> 

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title ><%= title %> </title>
+    <link rel="stylesheet" href="/animation.css" />
+  </head>
+  <body>
+    <header>
+      <div class = "nombre"><h1><%= title  %> </h1></div>
+      <div class = "nombre"><h1>Metodo1</h1></div>
+  </header>
+    <content>
+      <form method="post">
+        <div class="w3-content w3-display-container"></div>
+        <% if (result.tareas.length) { %>
+          
+          <% result.tareas.forEach(( palabra ) => { %>
+            <% %>
+            <div class="lpop">
+              <div class="box"> <%= palabra.pregunta %> </div>
+              <br>
+              <label>
+                <input type="text" name="reponder">
+            </label>
+            </div>
+  
+          <% }) %>
+          <% } %>  
+        </div>
+      <div class = buttons>
+      <button class="left"  type = "button" onclick="plusDivs(-1)">&#10094;</button>
+      <button class="right"  type = "button" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+      
+    </form>
+  </content>
+    <script>
+        
+      var slideIndex = 0;
+      showDivs(slideIndex);
+   
+
+      function plusDivs(n) {
+        showDivs(slideIndex += n);
+        console.log(slideIndex);
+        
+      }
+
+      function showDivs(n) {
+
+        
+        var i;
+        var x = document.getElementsByClassName("lpop");
+        console.log("all - ",x.length )
+        console.log(n);
+        if (n > x.length -1 ){
+          console.log("true");
+          document.querySelector(".right").setAttribute('type', 'submit')
+        }
+        if (n < x.length){
+          console.log(n);
+        if (n < 1) { 
+          document.querySelector(".left").style.visibility="hidden";
+         }
+        else if (n > x.length -2 ) { 
+          document.querySelector(".right").innerHTML='Fin'
+          
+        }
+        else{
+          document.querySelector(".left").style.visibility='visible'
+          // document.querySelector(".right").style.visibility="visible";
+          document.querySelector(".right").innerHTML = '&#10095'
+          document.querySelector(".right").setAttribute('type', 'button')
+        }
+        
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display="none";
+        }
+        x[slideIndex].style.display="block";
+      }
+    }
+   </script>
+  </body>
+</html>

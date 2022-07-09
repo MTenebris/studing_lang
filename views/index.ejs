@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title ><%= title %> </title>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <header>
+            <div class = "nombre"><h1>Proyecto nombre</h1></div>
+            <div class = "nombre"><h1>Temas</h1></div>
+        </header>
+
+        <content>
+            <% if (tema_name.length) { %>
+                <% tema_name.forEach(( tema ) => { %>
+                    <div class="box">
+                        
+                            <img src="/src/delete.png" class="imgindex" data-id="<%= tema %>"></i>
+                            
+                        <a href="tema/<%= tema %>"><%= tema %></a>
+                    </div>
+                <% }) %>
+              <% } %>
+              
+            
+        </content>
+        <div class="buttons">
+            <button  class="buttonp1"><a href="/anadir_tema">Anadir tema</a></button>
+        </div>
+        <script>
+            // function eliminar_tema(){
+            //     console.log("window.params.id");
+            //     console.log(window.url);
+            //     fetch(`/tema/${tema}`, {
+            //     method: 'DELETE',})
+            //    window.location.reload(); onclick="eliminar_tema()"
+            // }
+
+            document.addEventListener('click', (e) => {
+           const id = e.target.dataset.id ;
+           fetch(`/${id}`, {
+           method: 'DELETE',
+           }).then(() => {
+           window.location.reload();
+           });
+           })
+            
+
+        </script>
+
+    </body>
+</html>
